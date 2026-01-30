@@ -83,6 +83,33 @@ video {
 
 <body>
 
+<!-- AUDIO -->
+<audio id="music"></audio>
+
+<script>
+const playlist = [
+    "https://f.top4top.io/m_3682eywm51.mp3",
+    "https://i.top4top.io/m_36822torv1.mp3"
+];
+
+let index = 0;
+const audio = document.getElementById("music");
+
+audio.src = playlist[index];
+audio.autoplay = true;
+audio.loop = false;
+audio.volume = 0.8;
+
+audio.addEventListener("ended", () => {
+    index++;
+    if (index >= playlist.length) {
+        index = 0;
+    }
+    audio.src = playlist[index];
+    audio.play();
+});
+</script>
+
 <!-- HALAMAN 1 -->
 <div id="page1" class="page">
     <div class="header">
@@ -104,16 +131,15 @@ video {
     </div>
 
     <div class="gallery">
-        <!-- FOTO (TINGGAL TAMBAH SAMPAI 57) -->
-        <img src="https://via.placeholder.com/300" />
-        <img src="https://via.placeholder.com/300" />
-        <img src="https://via.placeholder.com/300" />
-        <!-- copy paste sampai 57 -->
+        <img src="https://via.placeholder.com/300">
+        <img src="https://via.placeholder.com/300">
+        <img src="https://via.placeholder.com/300">
+        <!-- tinggal copy sampai 57 -->
     </div>
 
     <div class="text">
         ini ituu foto foto yang kamu kirim ke aku dan akan aku abadikan disini biar kamu tau
-tapi itu fotonya kurang tauu
+        tapi itu fotonya kurang banyakk kamu gamau ngirim lagi? 
     </div>
 
     <a href="#page3" class="button">Klik Lanjutkan</a><br>
@@ -131,8 +157,7 @@ tapi itu fotonya kurang tauu
     <video controls src="VIDEO3.mp4"></video>
 
     <div class="text">
-        ini itu video lucu kamu yang dikirim ke aku tapi aku baru punya dikit
-        kamu gamau nambahin lagi apaa
+        ini itu video lucu kamu yang dikirim ke aku sebenernya kurang banyak ituu jadi kapan kamu kirim lagi? 
     </div>
 
     <a href="#page4" class="button">Lanjutkan</a><br>
@@ -146,9 +171,9 @@ tapi itu fotonya kurang tauu
     </div>
 
     <div class="text">
-        itu semuaa foto sama vidio yang kamu kirim ke aku sayangg,  
+        itu semuaa foto sama vidio yang kamu kirim aku sayangg,  
         tapii itu sbenernya kurang jadii kamu gamau nambahin lagi apa?  
-        kalo gamau parah sihh 
+        kalo gamau parah sihh
     </div>
 
     <a href="#page5" class="button">Lanjutkan</a><br>
@@ -165,10 +190,7 @@ tapi itu fotonya kurang tauu
         MAKASIH KAMU UDAH MAU PERHATIAN SAMA SUKA KIRIM HAL HAL KAYA GITUU,  
         KAMU ITU ORANG FAVORIT AKU JADI KAMU ITU JANGAN SUKA INSECURE YAAA.  
         KAMU ITU KERENN, KAMU ITU ORANG SATU SATUNYAA YANG AKU SUKA  
-        JADII AKU ITU CUMA SUKA KAMU GADA YANG LAIN. DAN KAMU ITU HEBAT TAU, 
-        KAMU ITU KUAT NANGGEPIN KE GAJELASAN AKU WALAU KADANG NYEBELIN TAPI
-        MAKASIHHH YAAA 😘🤗
-
+        JADII AKU ITU CUMA SUKA KAMU GADA YANG LAIN. DAN MAKASIHH KAMU UDAH KUAT NANGGEPIN KE GA JELASAN AKU 🥰🤗
     </div>
 
     <a href="#page4" class="back">Back</a>
