@@ -5,78 +5,99 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>I Love You</title>
 
+<!-- FONT CUTE -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: pink;
-    text-align: center;
-    color: #fff;
+* {
+    box-sizing: border-box;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(180deg, #ff9abf, #ff4d88);
+    color: white;
+    text-align: center;
+}
+
+/* PAGE */
 .page {
     display: none;
-    min-height: 100vh;
-    padding: 20px;
+    height: 100vh;
+    width: 100vw;
+    padding: 30px 20px;
 }
 
 .page:target {
-    display: block;
+    display: flex;
 }
 
 #page1 {
-    display: block;
+    display: flex;
 }
 
-.header a {
-    color: white;
-    text-decoration: none;
-    font-size: 28px;
-    font-weight: bold;
+.center {
+    margin: auto;
+    max-width: 650px;
 }
 
+/* HEADER */
+.header {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+/* TEXT */
 .text {
-    margin-top: 40px;
-    font-size: 18px;
-    line-height: 1.6;
+    font-size: 26px;
+    line-height: 1.9;
+    white-space: pre-line;
+    font-weight: 500;
+    min-height: 200px;
 }
 
+/* BUTTON */
 .button {
     display: inline-block;
     margin-top: 30px;
-    padding: 12px 25px;
-    background: #ff4d88;
+    padding: 15px 38px;
+    background: #ff2f77;
     color: white;
     text-decoration: none;
-    border-radius: 25px;
-    font-weight: bold;
+    border-radius: 40px;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .back {
     display: inline-block;
     margin-top: 20px;
     color: white;
+    font-size: 16px;
     text-decoration: underline;
 }
 
-.gallery {
-    margin-top: 20px;
-    max-height: 60vh;
-    overflow-y: auto;
+/* LOVE FALL */
+.love {
+    position: fixed;
+    top: -10px;
+    font-size: 22px;
+    animation: fall linear infinite;
 }
 
-.gallery img {
-    width: 90%;
-    max-width: 300px;
-    margin: 10px 0;
-    border-radius: 15px;
-}
-
-video {
-    width: 90%;
-    max-width: 320px;
-    margin: 15px 0;
-    border-radius: 15px;
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
 }
 </style>
 </head>
@@ -96,104 +117,114 @@ let index = 0;
 const audio = document.getElementById("music");
 
 audio.src = playlist[index];
-audio.autoplay = true;
-audio.loop = false;
 audio.volume = 0.8;
+audio.play();
 
 audio.addEventListener("ended", () => {
-    index++;
-    if (index >= playlist.length) {
-        index = 0;
-    }
+    index = (index + 1) % playlist.length;
     audio.src = playlist[index];
     audio.play();
 });
+
+/* LOVE JATUH */
+setInterval(() => {
+    const love = document.createElement("div");
+    love.className = "love";
+    love.innerHTML = "❤️";
+    love.style.left = Math.random() * 100 + "vw";
+    love.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(love);
+
+    setTimeout(() => love.remove(), 6000);
+}, 300);
+
+/* TEKS TYPING */
+function typeText(el, text) {
+    el.innerHTML = "";
+    let i = 0;
+    const typing = setInterval(() => {
+        el.innerHTML += text.charAt(i);
+        i++;
+        if (i >= text.length) clearInterval(typing);
+    }, 40);
+}
+
+window.addEventListener("hashchange", () => {
+    const active = document.querySelector(".page:target .text");
+    if (active) typeText(active, active.dataset.text);
+});
+
+window.onload = () => {
+    const first = document.querySelector("#page1 .text");
+    typeText(first, first.dataset.text);
+};
 </script>
 
-<!-- HALAMAN 1 -->
+<!-- PAGE 1 -->
 <div id="page1" class="page">
-    <div class="header">
-        <a href="#page1">I LOVE YOU</a>
-    </div>
+    <div class="center">
+        <div class="header">I LOVE YOU</div>
+        <div class="text" data-text="
+Haloo sayangg 🤍
 
-    <div class="text">
-        haloo sayangg aku bikin web ini itu buat Ngeabadiin foto kamu sama vidio kamuu,  
-        klik tombol di bawah ya untuk ngelanjutin
-    </div>
+Aku bikin web ini
+buat ngeabadikan
+foto dan video kamu.
 
-    <a href="#page2" class="button">Klik Lanjut</a>
+Klik tombol di bawah yaa 💕
+        "></div>
+        <a href="#page2" class="button">Klik Lanjut</a>
+    </div>
 </div>
 
-<!-- HALAMAN 2 -->
+<!-- PAGE 2 -->
 <div id="page2" class="page">
-    <div class="header">
-        <a href="#page1">I LOVE YOU</a>
-    </div>
+    <div class="center">
+        <div class="header">I LOVE YOU</div>
+        <div class="text" data-text="
+Ini semua foto
+yang kamu kirim ke aku 🤍
 
-    <div class="gallery">
-        <img src="https://via.placeholder.com/300">
-        <img src="https://via.placeholder.com/300">
-        <img src="https://via.placeholder.com/300">
-        <!-- tinggal copy sampai 57 -->
-    </div>
+Aku simpen di sini
+biar selalu ada.
 
-    <div class="text">
-        ini ituu foto foto yang kamu kirim ke aku dan akan aku abadikan disini biar kamu tau
-        tapi itu fotonya kurang banyakk kamu gamau ngirim lagi? 
+Kurang banyakk sihh 😆
+        "></div>
+        <a href="#page3" class="button">Lanjut</a><br>
+        <a href="#page1" class="back">Back</a>
     </div>
-
-    <a href="#page3" class="button">Klik Lanjutkan</a><br>
-    <a href="#page1" class="back">Back</a>
 </div>
 
-<!-- HALAMAN 3 -->
+<!-- PAGE 3 -->
 <div id="page3" class="page">
-    <div class="header">
-        <a href="#page1">I LOVE YOU</a>
+    <div class="center">
+        <div class="header">I LOVE YOU</div>
+        <div class="text" data-text="
+Ini video lucu kamu 🥺
+
+Aku suka banget.
+Tapi kapan nambah lagii? 💕
+        "></div>
+        <a href="#page4" class="button">Lanjut</a><br>
+        <a href="#page2" class="back">Back</a>
     </div>
-
-    <video controls src="VIDEO1.mp4"></video>
-    <video controls src="VIDEO2.mp4"></video>
-    <video controls src="VIDEO3.mp4"></video>
-
-    <div class="text">
-        ini itu video lucu kamu yang dikirim ke aku sebenernya kurang banyak ituu jadi kapan kamu kirim lagi? 
-    </div>
-
-    <a href="#page4" class="button">Lanjutkan</a><br>
-    <a href="#page2" class="back">Back</a>
 </div>
 
-<!-- HALAMAN 4 -->
+<!-- PAGE 4 -->
 <div id="page4" class="page">
-    <div class="header">
-        <a href="#page1">I LOVE YOU</a>
+    <div class="center">
+        <div class="header">I LOVE YOU</div>
+        <div class="text" data-text="
+Makasih yaa 🤍
+
+Kamu itu favorit aku.
+Jangan insecure.
+Kamu keren.
+
+Aku cuma suka kamu 🥰
+        "></div>
+        <a href="#page3" class="back">Back</a>
     </div>
-
-    <div class="text">
-        itu semuaa foto sama vidio yang kamu kirim aku sayangg,  
-        tapii itu sbenernya kurang jadii kamu gamau nambahin lagi apa?  
-        kalo gamau parah sihh
-    </div>
-
-    <a href="#page5" class="button">Lanjutkan</a><br>
-    <a href="#page3" class="back">Back</a>
-</div>
-
-<!-- HALAMAN 5 -->
-<div id="page5" class="page">
-    <div class="header">
-        <a href="#page1">I LOVE YOU</a>
-    </div>
-
-    <div class="text">
-        MAKASIH KAMU UDAH MAU PERHATIAN SAMA SUKA KIRIM HAL HAL KAYA GITUU,  
-        KAMU ITU ORANG FAVORIT AKU JADI KAMU ITU JANGAN SUKA INSECURE YAAA.  
-        KAMU ITU KERENN, KAMU ITU ORANG SATU SATUNYAA YANG AKU SUKA  
-        JADII AKU ITU CUMA SUKA KAMU GADA YANG LAIN. DAN MAKASIHH KAMU UDAH KUAT NANGGEPIN KE GA JELASAN AKU 🥰🤗
-    </div>
-
-    <a href="#page4" class="back">Back</a>
 </div>
 
 </body>
