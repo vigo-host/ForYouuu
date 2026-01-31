@@ -123,16 +123,24 @@ body {
     to {
         transform: translateY(110vh);
     }
-    /* === KUNCI TOMBOL DI BAWAH TANPA GANGGU APA PUN === */
+    /* === TOMBOL BENAR-BENAR NAMPEL DI BAWAH LAYAR === */
 .page {
     position: relative;
+    padding-bottom: 120px; /* biar konten ga ketutup tombol */
 }
 
 .button,
 .back {
-    position: sticky;
-    bottom: 20px;
-    z-index: 2;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 25px;
+    z-index: 5;
+}
+
+/* jarak back biar ga numpuk */
+.back {
+    bottom: 5px;
 }
 }
 </style>
@@ -140,7 +148,96 @@ body {
 
 <body>
 
-<!-- AUDIO -->
+<!-- <!-- AUDIO -->
+<audio id="music" preload="auto"></audio>
+<audio id="clickSound" preload="auto"
+src="https://j.top4top.io/m_3683click01.mp3"></audio>
+
+<script>
+/* ================= MUSIC PLAYLIST ================= */
+const playlist = [
+    "https://i.top4top.io/m_36822torv1.mp3",
+    "https://f.top4top.io/m_3682eywm51.mp3"
+];
+
+let index = 0;
+let started = false;
+
+const music = document.getElementById("music");
+const clickSound = document.getElementById("clickSound");
+
+music.volume = 0.8;
+clickSound.volume = 0.7;
+
+function playMusic() {
+    if (!started) {
+        music.src = playlist[index];
+        music.play().catch(() => {});
+        started = true;
+    }
+}
+
+/* GANTI LAGU SAAT HABIS */
+music.addEventListener("ended", () => {
+    index = (index + 1) % playlist.length;
+    music.src = playlist[index];
+    music.play();
+});
+
+/* ================= CLICK SOUND ================= */
+document.addEventListener("click", () => {
+    playMusic();
+    clickSound.currentTime = 0;
+    clickSound.play().catch(() => {});
+});
+
+/* ================= VIDEO HANDLER ================= */
+document.querySelectorAll("video").forEach(video => {
+    video.addEventListener("play", () => {
+        if (!music.paused) music.pause();
+    });
+
+    video.addEventListener("pause", () => {
+        if (started) music.play().catch(() => {});
+    });
+
+    video.addEventListener("ended", () => {
+        if (started) music.play().catch(() => {});
+    });
+});
+
+/* ================= LOVE FALL ================= */
+setInterval(() => {
+    const love = document.createElement("div");
+    love.className = "love";
+    love.innerHTML = "❤️";
+    love.style.left = Math.random() * 100 + "vw";
+    love.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(love);
+    setTimeout(() => love.remove(), 6000);
+}, 300);
+
+/* ================= TYPING TEXT ================= */
+function typeText(el, text) {
+    el.innerHTML = "";
+    let i = 0;
+    const typing = setInterval(() => {
+        el.innerHTML += text.charAt(i);
+        i++;
+        if (i >= text.length) clearInterval(typing);
+    }, 35);
+}
+
+window.addEventListener("hashchange", () => {
+    const active = document.querySelector(".page:target .text");
+    if (active) typeText(active, active.dataset.text);
+});
+
+window.onload = () => {
+    const first = document.querySelector("#page1 .text");
+    typeText(first, first.dataset.text);
+};
+</script> -->
 <audio id="music"></audio>
 
 <script>
@@ -277,6 +374,8 @@ Bisa di Scroll jadi kamu scroll buat liat
             <img src="https://l.top4top.io/p_3683da07d1.jpg">
             <img src="https://k.top4top.io/p_3683pgc821.jpg">
             <img src="https://j.top4top.io/p_368356qqh1.jpg">
+            <img src="https://h.top4top.io/p_3683h0k9u1.jpg">
+            <img src="https://g.top4top.io/p_3683hoxdl1.jpg">
             <!-- copy sampai 57 -->
         </div>
 
@@ -300,6 +399,7 @@ Tapi jujur aja, ini masih kurang banyakk 😗
             <video controls src="https://f.top4top.io/m_36821q2iz1.mp4"></video>
             <video controls src="https://e.top4top.io/m_3682yuvpj1.mp4"></video>
             <video controls src="https://d.top4top.io/m_3682qv8lo1.mp4"></video>
+            <video controls src="https://g.top4top.io/m_3683v5i281.mp4"></video>
         </div>
 
         <div class="text" data-text="
