@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I Love You</title>
+<title>I Love You ❤</title>
 
 <!-- FONT CUTE -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -44,16 +44,16 @@ body {
 }
 
 .center {
-    margin: auto;
-    max-width: 650px;
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 /* HEADER */
 .header {
     font-size: 42px;
     font-weight: 700;
-    margin-bottom: 30px;
-    letter-spacing: 2px;
+    margin-bottom: 20px;
 }
 
 /* TEXT */
@@ -62,13 +62,13 @@ body {
     line-height: 1.9;
     white-space: pre-line;
     font-weight: 500;
-    min-height: 200px;
+    margin-bottom: 20px;
 }
 
 /* BUTTON */
 .button {
     display: inline-block;
-    margin-top: 30px;
+    margin-top: 15px;
     padding: 15px 38px;
     background: #ff2f77;
     color: white;
@@ -80,10 +80,31 @@ body {
 
 .back {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 15px;
     color: white;
     font-size: 16px;
     text-decoration: underline;
+}
+
+/* SCROLL KHUSUS FOTO & VIDEO */
+.scroll-box {
+    max-height: 40vh;
+    overflow-y: auto;
+    padding: 10px 0;
+}
+
+.scroll-box img {
+    width: 90%;
+    max-width: 300px;
+    border-radius: 15px;
+    margin-bottom: 12px;
+}
+
+.scroll-box video {
+    width: 90%;
+    max-width: 320px;
+    border-radius: 15px;
+    margin-bottom: 15px;
 }
 
 /* LOVE FALL */
@@ -92,12 +113,27 @@ body {
     top: -10px;
     font-size: 22px;
     animation: fall linear infinite;
+
+    z-index: -1;          /* LOVE DI BELAKANG SEMUA KONTEN */
+    pointer-events: none; /* TIDAK BISA NUTUP / KEKLIK */
+    opacity: 0.7;         /* BIAR LEBIH HALUS */
 }
 
 @keyframes fall {
     to {
         transform: translateY(110vh);
     }
+    /* === KUNCI TOMBOL DI BAWAH TANPA GANGGU APA PUN === */
+.page {
+    position: relative;
+}
+
+.button,
+.back {
+    position: sticky;
+    bottom: 20px;
+    z-index: 2;
+}
 }
 </style>
 </head>
@@ -134,7 +170,6 @@ setInterval(() => {
     love.style.left = Math.random() * 100 + "vw";
     love.style.animationDuration = (3 + Math.random() * 3) + "s";
     document.body.appendChild(love);
-
     setTimeout(() => love.remove(), 6000);
 }, 300);
 
@@ -146,7 +181,7 @@ function typeText(el, text) {
         el.innerHTML += text.charAt(i);
         i++;
         if (i >= text.length) clearInterval(typing);
-    }, 40);
+    }, 35);
 }
 
 window.addEventListener("hashchange", () => {
@@ -163,7 +198,7 @@ window.onload = () => {
 <!-- PAGE 1 -->
 <div id="page1" class="page">
     <div class="center">
-        <div class="header">I LOVE YOU</div>
+        <div class="header">I LOVE YOU ❤</div>
         <div class="text" data-text="
 Haloo sayangg 🤍
 
@@ -172,40 +207,106 @@ buat ngeabadiin
 foto dan video kamu.
 
 Klik tombol di bawah yaa 💕
+
+Tapi jangan lupa nanti pas di bagian foto sama video nya itu
+Bisa di Scroll jadi kamu scroll buat liat
         "></div>
         <a href="#page2" class="button">Klik Lanjut</a>
     </div>
 </div>
 
-<!-- PAGE 2 -->
+<!-- PAGE 2 (FOTO) -->
 <div id="page2" class="page">
     <div class="center">
-        <div class="header">I LOVE YOU</div>
-        <div class="text" data-text="
-Ini semua foto
-yang kamu kirim ke aku 🤍
+        <div class="header">I LOVE YOU ❤</div>
 
-Aku simpen di sini
-buat ngeabadiin semua foto kamu
-            
- Tapii sebenernya ini semua kurang tau
-            Terus Kapan kamu mau kirim lagi? tapi yang banyak ngirimnya
-           "></div>
+        <div class="scroll-box">
+            <!-- TARUH LINK FOTO DI SINI -->
+            <img src="https://j.top4top.io/p_3682juntz1.jpg">
+            <img src="https://k.top4top.io/p_36827eb991.jpg">
+            <img src="https://l.top4top.io/p_3682qa4qf1.jpg">
+            <img src="https://a.top4top.io/p_3682gn4yi1.jpg">
+            <img src="https://f.top4top.io/p_3682wphif1.jpg">
+            <img src="https://e.top4top.io/p_3682a860n1.jpg">
+            <img src="https://c.top4top.io/p_3682ubev11.jpg">
+            <img src="https://b.top4top.io/p_36829jwqx1.jpg">
+            <img src="https://g.top4top.io/p_36833nigs1.jpg">
+            <img src="https://f.top4top.io/p_3683gacq61.jpg">
+            <img src="https://e.top4top.io/p_3683jhw7x1.jpg">
+            <img src="https://d.top4top.io/p_3683vv88y1.jpg">
+            <img src="https://c.top4top.io/p_36833e51w1.jpg">
+            <img src="https://b.top4top.io/p_36836v67y1.jpg">
+            <img src="https://a.top4top.io/p_3683002kt1.jpg">
+            <img src="https://l.top4top.io/p_36835dnwp1.jpg">
+            <img src="https://l.top4top.io/p_36834pnsx1.jpg">
+            <img src="https://k.top4top.io/p_3683kevox1.jpg">
+            <img src="https://j.top4top.io/p_3683bw4wo1.jpg">
+            <img src="https://i.top4top.io/p_3683qnwse1.jpg">
+            <img src="https://h.top4top.io/p_3683amba51.jpg">
+            <img src="https://c.top4top.io/p_3683lkvmq1.jpg">
+            <img src="https://d.top4top.io/p_3683ckf6j1.jpg">
+            <img src="https://g.top4top.io/p_3683jbxeh1.jpg">
+            <img src="https://e.top4top.io/p_3683n29pg1.jpg">
+            <img src="https://f.top4top.io/p_36834cnhr1.jpg">
+            <img src="https://l.top4top.io/p_3683hlyaq1.jpg">
+            <img src="https://b.top4top.io/p_3683y8e9a1.jpg">
+            <img src="https://a.top4top.io/p_3683zwswu1.jpg">
+            <img src="https://k.top4top.io/p_36831olke1.jpg">
+            <img src="https://j.top4top.io/p_3683due1t1.jpg">
+            <img src="https://i.top4top.io/p_3683v5hhk1.jpg">
+            <img src="https://h.top4top.io/p_36832pyf41.jpg">
+            <img src="https://c.top4top.io/p_3683zhho91.jpg">
+            <img src="https://d.top4top.io/p_3683csqp31.jpg">
+            <img src="https://e.top4top.io/p_3683by38v1.jpg">
+            <img src="https://g.top4top.io/p_3683cyiaa1.jpg">
+            <img src="https://h.top4top.io/p_3683xjhr11.jpg">
+            <img src="https://b.top4top.io/p_36831p3191.jpg">
+            <img src="https://a.top4top.io/p_3683bdfil1.jpg">
+            <img src="https://l.top4top.io/p_3683m09pb1.jpg">
+            <img src="https://k.top4top.io/p_3683sqlvx1.jpg">
+            <img src="https://j.top4top.io/p_36837zsx91.jpg">
+            <img src="https://i.top4top.io/p_36836zeqx1.jpg">
+            <img src="https://h.top4top.io/p_36834ygwt1.jpg">
+            <img src="https://g.top4top.io/p_3683aaa5j1.jpg">
+            <img src="https://e.top4top.io/p_3683bspdl1.jpg">
+            <img src="https://f.top4top.io/p_3683bsk8r1.jpg">
+            <img src="https://a.top4top.io/p_3683us4xd1.jpg">
+            <img src="https://c.top4top.io/p_3683936z81.jpg">
+            <img src="https://b.top4top.io/p_3683fte751.jpg">
+            <img src="https://a.top4top.io/p_3683us4xd1.jpg">
+            <img src="https://l.top4top.io/p_3683da07d1.jpg">
+            <img src="https://k.top4top.io/p_3683pgc821.jpg">
+            <img src="https://j.top4top.io/p_368356qqh1.jpg">
+            <!-- copy sampai 57 -->
+        </div>
+
+        <div class="text" data-text="
+Ini semua foto kamu yang dikirim buat akuu
+Tapi jujur aja, ini masih kurang banyakk 😗
+        "></div>
+
         <a href="#page3" class="button">Lanjut</a><br>
         <a href="#page1" class="back">Back</a>
     </div>
 </div>
 
-<!-- PAGE 3 -->
+<!-- PAGE 3 (VIDEO) -->
 <div id="page3" class="page">
     <div class="center">
-        <div class="header">I LOVE YOU</div>
-        <div class="text" data-text="
-Ini video lucu kamu 
+        <div class="header">I LOVE YOU ❤</div>
 
-Di vidio itu kamu lucu bangett cumaa
- kapan mau ngirim lagii? 
+        <div class="scroll-box">
+            <!-- TARUH LINK VIDEO DI SINI -->
+            <video controls src="https://f.top4top.io/m_36821q2iz1.mp4"></video>
+            <video controls src="https://e.top4top.io/m_3682yuvpj1.mp4"></video>
+            <video controls src="https://d.top4top.io/m_3682qv8lo1.mp4"></video>
+        </div>
+
+        <div class="text" data-text="
+Ini video kamu, kamu lucu di video nya
+Tapi sayang nya kamu cuma ngirim dikit huuu 👎🖕
         "></div>
+
         <a href="#page4" class="button">Lanjut</a><br>
         <a href="#page2" class="back">Back</a>
     </div>
@@ -214,7 +315,7 @@ Di vidio itu kamu lucu bangett cumaa
 <!-- PAGE 4 -->
 <div id="page4" class="page">
     <div class="center">
-        <div class="header">I LOVE YOU</div>
+        <div class="header">I LOVE YOU ❤</div>
         <div class="text" data-text="
 Makasih yaa kamu udah mau kirim hal hal yang kaya gituu 🤍
 
@@ -224,8 +325,8 @@ padahal di hati aku cuma ada kamuu.
 But kamu itu keren soalnya kuat nanggepin ke ga jelasan aku yang bikin emosi terus
 Sama aku mau minta maaf kalo sering bikin kamu kepikiran. 
 
- Pokoknya mah I LOVE YOUU 
-            "></div>
+ Pokoknya mah I LOVE YOUU ❤❤
+        "></div>
         <a href="#page3" class="back">Back</a>
     </div>
 </div>
